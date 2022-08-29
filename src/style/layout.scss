@@ -1,0 +1,77 @@
+@import "./mixin.scss";
+@import "var.scss";
+
+// layout-container
+.xx-layout-container {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  .el-main {
+    padding: 0;
+
+    .layout-main {
+      padding: 15px 10px;
+    }
+  }
+}
+
+
+// layout-header
+.el-header {
+  &.xx-layout-header {
+    height: unset;
+    padding: 0;
+  }
+}
+
+.xx-layout-header {
+  background-color: white;
+
+  .header-setting {
+    @include padding-layout;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 0.5px solid #dcdfe6;
+
+    .header-menu-control {
+      @include vertical-center;
+
+      i {
+        cursor: pointer;
+      }
+
+      i:hover {
+        color: var(--el-color-primary);
+      }
+
+      .nav-menu-link {
+        @include vertical-center;
+      }
+    }
+  }
+}
+
+// setting drawer
+.setting-drawer .content-wrap {
+  padding: 0 15px 15px;
+}
+
+.setting-drawer .content-wrap span {
+  font-size: $defaultFontSize;
+}
+
+.setting-drawer .content-wrap .el-row {
+  margin-top: 10px;
+
+  .el-input-number {
+    width: 70px;
+  }
+}
+
+
+.padding0 {
+  padding: 0 !important;
+}
+
+

@@ -1,0 +1,18 @@
+@mixin vertical-center {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@mixin padding-layout {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@mixin getPadding($padding) {
+  padding: $padding;
+}
+
+@mixin getMargin($margin) {
+  margin: $margin;
+}

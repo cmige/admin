@@ -1,0 +1,57 @@
+@import "mixin.scss";
+@import "var";
+
+.el-tabs {
+  &.tab-menu {
+    // 消除内容区
+    .el-tabs__content {
+      @include getPadding(0)
+    }
+  }
+
+  &.tab-menu .custom-tabs-label .el-icon {
+    vertical-align: middle;
+  }
+
+  &.tab-menu .custom-tabs-label .label-text {
+    vertical-align: middle;
+    @include getMargin(0 0 0 4px);
+    //margin-left: 4px;
+    font-size: $defaultFontSize;
+  }
+
+  &.tab-menu .custom-tabs-label + i {
+    vertical-align: middle;
+    font-size: $defaultFontSize;
+  }
+
+}
+
+
+.el-drawer {
+  &.setting-drawer {
+    .el-drawer__header {
+      margin-bottom: 0;
+      padding: 15px;
+      border-bottom: 1px solid;
+      border-color: var(--el-border-color);
+    }
+
+    .el-drawer__body {
+      padding: 0;
+    }
+
+    .el-drawer__footer {
+      padding: 15px;
+      border-top: 1px solid;
+      border-color: var(--el-border-color);
+
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        height: 70px;
+        justify-content: space-between;
+      }
+    }
+  }
+}
