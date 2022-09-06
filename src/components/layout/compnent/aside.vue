@@ -1,11 +1,14 @@
 <template>
-	<div class="aside-warp">
-		<el-aside :class="calcAsideStyle" v-show="state.showAside">
+
+	<el-row class="xx-aside" :style="{'width': themeConfig.isCollapse?0:'200px'}">
+		<el-aside>
 			<el-scrollbar class="scroll">
 				<Menu></Menu>
 			</el-scrollbar>
 		</el-aside>
-	</div>
+	</el-row>
+
+
 </template>
 
 <script setup lang="ts">
@@ -13,6 +16,7 @@ import {computed, getCurrentInstance, onBeforeMount, reactive} from "vue";
 import {storeToRefs} from "pinia";
 import {useThemeConfig} from "@/store/themeConfig";
 import Menu from "@/components/menu/vertical.vue";
+
 
 const instance = <any>getCurrentInstance();
 const state = reactive({
@@ -58,9 +62,24 @@ const initMenuWidth = (clientWidth: number) => {
 </script>
 
 <style scoped lang="scss">
+
+.xx-aside {
+	height: 100%;
+	overflow: hidden;
+	transition: 0.3s ease;
+
+	::v-deep(.el-aside) {
+		width: unset;
+		height: 100%;
+		transition: width 1s ease;
+	}
+}
+
 .aside-warp {
 	height: 100%;
 	overflow: hidden;
+
+	width: inherit;
 
 	.aside {
 		width: unset;

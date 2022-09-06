@@ -1,23 +1,19 @@
 <template>
-  <el-container class="xx-layout-container">
-    <Aside/>
-
-    <el-container direction="vertical">
-      <!--    header fixed  -->
-      <Header v-if="isFixedHeader"></Header>
-
-      <el-main style="background-color: #f8f8f8">
-        <el-scrollbar>
-          <Header v-if="!isFixedHeader"></Header>
-          <Main style="background-color: #f8f8f8"></Main>
-          <el-footer>Footer</el-footer>
-        </el-scrollbar>
-      </el-main>
-
-
-      <!--        <el-footer>Footer</el-footer>-->
-    </el-container>
-  </el-container>
+	<el-container class="xx-layout-container">
+		<Aside class="aside"/>
+		<el-container direction="vertical">
+			<!--    header fixed  -->
+			<Header v-if="isFixedHeader"></Header>
+			<el-main style="background-color: #f8f8f8">
+				<el-scrollbar>
+					<Header v-if="!isFixedHeader"></Header>
+					<Main style="background-color: #f8f8f8"></Main>
+					<el-footer>Footer</el-footer>
+				</el-scrollbar>
+			</el-main>
+			<!--        <el-footer>Footer</el-footer>-->
+		</el-container>
+	</el-container>
 </template>
 
 <script setup lang="ts">
@@ -35,11 +31,11 @@ const {themeConfig} = storeToRefs(store);
 
 
 const isFixedHeader = computed(() => {
-  return themeConfig.value.isFixedHeader;
+	return themeConfig.value.isFixedHeader;
 });
 const router = useRouter();
 const toPath = (path: string) => {
-  router.push(path);
+	router.push(path);
 };
 
 

@@ -103,7 +103,7 @@ const themeConfigStore = useThemeConfig();
 const {themeConfig} = storeToRefs(themeConfigStore);
 
 const handleMenuCollapse = () => {
-
+	themeConfig.value.isCollapse = !themeConfig.value.isCollapse;
 };
 const handleSettingDrawer = () => {
 	instance.proxy.mittBus.emit("showSettingDrawer");

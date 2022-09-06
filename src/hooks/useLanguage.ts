@@ -1,4 +1,4 @@
-import {getCurrentInstance, onBeforeMount, onMounted, onUnmounted, reactive,} from "vue";
+import {computed, getCurrentInstance, onBeforeMount, onMounted, onUnmounted, reactive,} from "vue";
 import {checkLang, initLang, initMessage, setLang} from "@/utils/other";
 import {useThemeConfig} from "@/store/themeConfig";
 import {storeToRefs} from "pinia";
@@ -16,8 +16,15 @@ const useLanguage = () => {
     onBeforeMount(() => {
         const storeLang = themeConfig.value.locale;
         const localLang = initLang();
-        state.locale = storeLang || (checkLang(localLang) ? localLang : "zh-cn");
-        setLang(storeLang);
+        // 以 pinia 的语言设置为主
+        const lang = storeLang || (checkLang(localLang) ? localLang : "zh-cn");
+
+        if (state.locale !== lang) {
+
+            state.locale = lang;
+            themeConfig.value.locale = state.locale;
+            setLang(state.locale);
+        }
     });
 
     onMounted(() => {
@@ -40,9 +47,19 @@ const useLanguage = () => {
         return initMessage()[state.locale];
     };
 
+    const getLanguage = (type: string) => {
+        if (type) {
+            return computed(() => {
+                return getMessage().message[type];
+            }).value;
+        }
+        return getMessage();
+    };
+
     return {
         state,
         getMessage,
+        getLanguage
     };
 };
 

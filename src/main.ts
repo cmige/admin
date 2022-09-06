@@ -10,7 +10,7 @@ import store from "@/store/index";
 const app = createApp(App);
 // 注册 icon
 other.elIcon(app);
-
+other.initIconFont();
 // evenBus
 const Mit = mitt();
 declare module "vue" {
@@ -27,8 +27,6 @@ app
     // .use(ElementPlus)
     .use(router)
     .mount("#app");
-
-
 
 
 

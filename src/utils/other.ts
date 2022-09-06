@@ -41,13 +41,30 @@ export const checkLang = (name: string) => {
     return checkList.indexOf(name) !== -1;
 };
 
+let iconfontVersion = ["3621452_xot80l0a4z8"];
+let iconfontUrlCss = `//at.alicdn.com/t/c/font_$key.css`;
+const loadIconfont = (url: string) => {
+    const link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = url;
+    const head = document.getElementsByTagName("head")[0];
+    head.appendChild(link);
+};
+
+export const initIconFont = () => {
+    iconfontVersion.forEach(ele => {
+        loadIconfont(iconfontUrlCss.replace("$key", ele));
+    });
+};
+
 const other = {
     elIcon: (app: App) => {
         initElIcon(app);
     },
     initMessage,
-    checkLang
-
+    checkLang,
+    initIconFont
 };
 
 export default other;

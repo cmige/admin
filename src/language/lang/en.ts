@@ -46,8 +46,27 @@ const settingDrawer = {
     restoreDefault: "restore default"
 };
 
+const login = {
+    account: "account",
+    mobile: "mobile",
+    errMsg: {
+        isnull: "can not be null",
+        lengthErr: "number at least 4, maximum 12",
+        verifyErr: "verify code is not match",
+        phoneRoleErr: "phone number is illegal, please enter a legal phone number"
+    },
+    placeholder: {
+        account: "place enter your account, default account is admin",
+        password: "place enter your password, default password is admin",
+        verifyCode: "place enter verify code",
+        phone: "place enter your phone number",
+        phoneVerifyCode: "place enter your phone verify code"
+    }
+};
+
 
 export default {
     layout,
+    login,
     settingDrawer
 };

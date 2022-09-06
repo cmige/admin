@@ -1,12 +1,12 @@
 {
-  "name": "changeskin",
+  "name": "admin-v3",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "dev-count": "vite ",
     "build": "vue-tsc --noEmit &&  vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev-build": "vite build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.6",
@@ -15,9 +15,11 @@
     "countup.js": "^2.3.2",
     "echarts": "^5.3.3",
     "element-plus": "^2.2.9",
+    "js-cookie": "^3.0.1",
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
+    "qrcodejs2-fixes": "^0.0.2",
     "vue": "^3.2.25",
     "vue-router": "^4.1.1"
   },

@@ -1,4 +1,5 @@
 import {getCurrentInstance, onBeforeMount, onMounted, onUnmounted, ref} from "vue";
+
 type Result = { layout: string, clientWidth: number }
 
 function useClientWidth() {

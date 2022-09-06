@@ -46,8 +46,27 @@ const settingDrawer = {
     restoreDefault: "一键恢复默认"
 };
 
+const login = {
+    account: "帐号登录",
+    mobile: "手机登录",
+    errMsg: {
+        isnull: "不能为空",
+        lengthErr: "长度至少为4位,最多为12位",
+        verifyErr: "验证码不正确",
+        phoneRoleErr: "手机号格式不合法，请输入合法的手机号"
+    },
+    placeholder: {
+        account: "请输入账号，默认账号 admin",
+        password: "请输入密码，默认密码 admin",
+        verifyCode: "请输入条形验证码",
+        phone: "请输入手机号",
+        phoneVerifyCode: "请输入验证码"
+    }
+};
+
 
 export default {
     layout,
+    login,
     settingDrawer
 };
