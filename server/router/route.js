@@ -60,16 +60,16 @@ const routeList = [
 		name: "Function",
 		title: "function-management",
 		icon: "",
-		component: "/function/index.vue"
+		component: "/functional/index.vue"
 	},
 	{
 		route_id: 8,
 		pid: 0,
-		path: "/setting",
-		name: "Setting",
-		title: "setting-management",
+		path: "/system",
+		name: "systemSetting",
+		title: "system-management",
 		icon: "Setting",
-		component: "/setting/index.vue"
+		component: "/system/index.vue"
 	},
 	{
 		route_id: 9,

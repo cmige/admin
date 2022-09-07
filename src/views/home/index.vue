@@ -6,10 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import instance from "@/api";
+import {useRouter} from "vue-router";
 
-const test = async () => {
-	console.log(await instance.get("/api/getUserInfo"));
+const router = useRouter();
+const test = () => {
+	router.push("/products/category");
 };
 </script>
 

@@ -1,13 +1,12 @@
 <template>
 	<div class="main-container">
 		<router-view v-slot="{Component, route}">
-			<transition
-					enter-active-class="animate__animated animate__fadeInLeft"
-					mode="out-in">
-				<keep-alive>
+			<keep-alive>
+				<suspense>
 					<component :is="Component" :key="route.name"></component>
-				</keep-alive>
-			</transition>
+					<template #fallback>loading.....</template>
+				</suspense>
+			</keep-alive>
 		</router-view>
 	</div>
 </template>

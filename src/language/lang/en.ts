@@ -1,3 +1,5 @@
+import {menuMap} from "./map";
+
 const layout = {
     copyTextSuccess: "Copy succeeded!",
     copyTextError: "Copy failed!",
@@ -64,9 +66,25 @@ const login = {
     }
 };
 
+const menu = {
+    [menuMap.home]: "home",
+    [menuMap.products]: "product",
+    [menuMap.role]: "role",
+    [menuMap.user]: "user",
+    [menuMap.order]: "order",
+    [menuMap.personal]: "personal",
+    [menuMap.functional]: "function",
+    [menuMap.system]: "setting",
+    [menuMap.charts]: "charts",
+    [menuMap.category]: "category",
+    [menuMap.commodity]: "commodity",
+
+};
+
 
 export default {
     layout,
     login,
-    settingDrawer
+    settingDrawer,
+    menu
 };

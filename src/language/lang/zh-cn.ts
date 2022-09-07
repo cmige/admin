@@ -1,3 +1,5 @@
+import {menuMap} from "@/language/lang/map";
+
 const layout = {
     copyTextSuccess: "复制成功!",
     copyTextError: "复制失败!",
@@ -64,9 +66,24 @@ const login = {
     }
 };
 
+const menu = {
+    [menuMap.home]: "首页",
+    [menuMap.products]: "商品管理",
+    [menuMap.role]: "权限管理",
+    [menuMap.user]: "用户管理",
+    [menuMap.order]: "订单管理",
+    [menuMap.personal]: "个人信息",
+    [menuMap.functional]: "功能",
+    [menuMap.system]: "系统设置",
+    [menuMap.charts]: "大数据报表",
+    [menuMap.category]: "分类管理",
+    [menuMap.commodity]: "产品管理",
+};
+
 
 export default {
     layout,
     login,
-    settingDrawer
+    settingDrawer,
+    menu
 };

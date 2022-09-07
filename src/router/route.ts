@@ -9,26 +9,15 @@ const ProductManage = () => import("@/views/products/index.vue");
 const RoleManage = () => import("@/views/role/index.vue");
 const UserManage = () => import("@/views/user/index.vue");
 const OrderManage = () => import("@/views/order/index.vue");
-
+const SystemManage = () => import("@/views/system/index.vue")
+const Personal = () => import("@/views/personal/index.vue")
+const Charts = () => import("@/views/charts/index.vue")
+const Function = () => import("@/views/functional/index.vue")
+const Category = () => import("@/views/products/category/index.vue")
+const Commodity = () => import("@/views/products/commodity/index.vue")
 // functional
 const CountUp = () => import("@/views/functional/countUp/index.vue");
 const Copy = () => import("@/views/functional/clipboard/index.vue");
-
-
-export const staticRoutes: Array<RouteRecordRaw> = [
-    {
-        path: "/",
-        name: "/",
-        redirect: "/home",
-        component: Layout,
-        children: []
-    },
-    {
-        path: "/login",
-        name: "login",
-        component: Login
-    }
-];
 
 
 export const dynamicRoutes: Array<RouteRecordRaw> = [
@@ -46,7 +35,20 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
             {
                 path: "/products",
                 name: "productManage",
-                component: ProductManage
+                component: ProductManage,
+                redirect: '/products/category',
+                children:[
+                    {
+                        path: '/products/category',
+                        name: "Category",
+                        component: Category
+                    },
+                    {
+                        path: '/products/commodity',
+                        name: "Commodity",
+                        component: Commodity
+                    }
+                ]
             },
             {
                 path: "/role",
@@ -64,15 +66,42 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
                 component: OrderManage
             },
             {
-                path: "/copy",
-                name: "copy",
-                component: Copy
+                path: "/personal",
+                name: "Personal",
+                component: Personal
             },
             {
-                path: "/countUp",
-                name: "countUp",
-                component: CountUp
+                path: "/fun",
+                name: "Function",
+                component: Function
+            },
+            {
+                path: "/system",
+                name: "System",
+                component: SystemManage
+            },
+            {
+                path: "/charts",
+                name: "Charts",
+                component: Charts
             },
         ]
     },
 ];
+
+export const staticRoutes: Array<RouteRecordRaw> = [
+    {
+        path: "/",
+        name: "/",
+        component: Layout
+
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: Login
+    }
+
+];
+
+
