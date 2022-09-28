@@ -1,0 +1,35 @@
+@import "./user";
+@import "../var";
+
+
+.xx-main-user,
+.xx-main-role{
+  .el-card__header{
+    padding: 15px;
+  }
+  .xx-user-card-header,
+  .xx-role-card-header{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .title{
+      font-size: $defaultFontSize;
+      font-weight: 600;
+      float: left;
+      width: 80px;
+    }
+    &-control{
+      display: flex;
+      justify-content: end;
+      .controller{
+        display: flex;
+      }
+    }
+  }
+
+}
+
+.xx-main-not-fount{
+
+}

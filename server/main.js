@@ -1,5 +1,7 @@
 const express = require("express");
 const loginRouter = require("./router/loginRouter");
+const userRouter = require("./router/userRouter")
+const roleRouter = require("./router/roleRouter")
 const jwt = require("jsonwebtoken");
 const expressjwt = require("express-jwt");
 require("dotenv").config();
@@ -7,6 +9,7 @@ require("dotenv").config();
 require("./mongoose/connect");
 // 初始化基本数据
 require("./mongoose");
+require('./utils/aop')
 
 
 const port = 5000;
@@ -16,53 +19,55 @@ app.use(express.urlencoded());
 
 // 使用 expressjwt 代替
 const auth = async (req, res, next) => {
-	const rawToken = String(req.headers.authorization.split(" ").pop());
-	try {
-		const {id} = jwt.verify(rawToken, process.env.JWT_SECRET);
-		req.header.userId = id;
-		next();
-	} catch (error) {
-		if (error.name === "TokenExpiredError") {
-			return res.status(430).send({
-				message: "token失效,请重新登录"
-			});
-		} else if (error.name === "JsonWebTokenError") {
-			return res.status(401).send({
-				message: "无效的Token"
-			});
-		} else {
-			return res.status(500).send({
-				message: `未知错误-${error.name}`
-			});
-		}
-	}
+  const rawToken = String(req.headers.authorization.split(" ").pop());
+  try {
+    const {id} = jwt.verify(rawToken, process.env.JWT_SECRET);
+    req.header.userId = id;
+    next();
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res.status(430).send({
+        message: "token失效,请重新登录"
+      });
+    } else if (error.name === "JsonWebTokenError") {
+      return res.status(401).send({
+        message: "无效的Token"
+      });
+    } else {
+      return res.status(500).send({
+        message: `未知错误-${error.name}`
+      });
+    }
+  }
 
 
 };
 
-const whiteList = ["/api/login", "/api/getUserRoute"];
+const whiteList = ["/api/login", "/api/getUserRoute", "/api/userList"];
 app.use(
-	expressjwt.expressjwt({
-		secret: process.env.JWT_SECRET,
-		algorithms: ["HS256"],
-	}).unless({
-		path: whiteList
-	}),
+  expressjwt.expressjwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"],
+  }).unless({
+    path: whiteList
+  }),
 );
 
 app.use(loginRouter);
+app.use(userRouter);
+app.use(roleRouter);
 
 app.use(function (err, req, res, next) {
-	if (err.name === "UnauthorizedError") {
-		res.status(401).send({
-			message: "失效的token，请重新登录"
-		});
-	} else {
-		next(err);
-	}
+  if (err.name === "UnauthorizedError") {
+    res.status(401).send({
+      message: "失效的token，请重新登录"
+    });
+  } else {
+    next(err);
+  }
 });
 
 
 app.listen(port, () => {
-	console.log("serve is running ...");
+  console.log("serve is running ...");
 });

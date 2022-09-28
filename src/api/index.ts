@@ -1,38 +1,27 @@
-import axios from "axios";
-import {Cookie} from "@/utils/storage";
-
-const baseUrl = import.meta.env.VITE_BASE_URL;
-const instance = axios.create({
-    baseURL: baseUrl,
-    timeout: 10000,
-    headers: {
-        "Content-Type": "application/json"
-    }
-});
+import request from './http'
+import API from "@/api/api";
 
 
-instance.interceptors.request.use(
-    (config) => {
-        const token = Cookie.get("token");
-        (config.headers as any).Authorization = `Bearer ${token}`;
-        return config;
-    },
-    error => {
-        return Promise.reject(error);
-    }
-);
+interface IUserInfo {
+  account: string,
+  password: string,
+  phone?: number,
+  email?: string,
+  role?: string
+}
 
-instance.interceptors.response.use(
-    response => {
-        return response.data;
-    },
-    error => {
-        if (error.message == "Network Error") ElMessage.error("网络连接错误");
-        if (error.message.startsWith("timeout")) ElMessage.error("网络连接超时");
-        if (error.response && error.response.data) ElMessage.error(error.response.data.message);
-        return Promise.reject(error);
-    }
-);
+interface IRoleInfo {
+  roleName: string,
+  roleList: string[],
+  authName: string
+}
+
+export const addUser = (userInfo: IUserInfo) => request.post(API.register, userInfo)
+
+export const getUserList = () => request.get(API.userList)
+
+export const getRoleList = () => request.get(API.roleList)
+
+export const addRole = (roleInfo: IRoleInfo) => request.post(API.addRole, {roleInfo})
 
 
-export default instance;

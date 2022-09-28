@@ -1,64 +1,63 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const routeList = require("../router/route");
+const routeList = require("../utils/route");
 
 const userAuthSchema = new Schema({
-	role_id: {type: Number},
-	role_name: {type: String, required: true},
-	createTime: {type: Number, default: Date.now()},
-	auth_name: {type: String},
-	auth_time: {type: Number},
-	role_list: {type: Array, require: true, default: []},
+  roleName: {type: String, required: true, unique: true},
+  createTime: {type: Date, default: Date.now},
+  authName: {type: String},
+  authTime: {type: Date},
+  roleList: {type: [Number], require: true, default: []},
 });
 
 
 const commonRoleList = () => {
-	const list = [];
-	const limit = [3, 4, 5];
-	let pidArr = [];
+  const list = [];
+  const limit = [3, 4, 5];
+  let pidArr = [];
 
-	routeList.sort((a, b) => a.route_id - b.route_id).forEach(route => {
-		if (limit.indexOf(route.route_id) !== -1) {
-			pidArr.push(route.route_id);
-		} else {
-			if (pidArr.length) {
-				if (pidArr.indexOf(route.pid) !== -1 || pidArr.indexOf(route.route_id) !== -1) {
-					pidArr.push(route.route_id);
-				} else {
-					list.push(route.route_id);
-				}
-			} else {
-				list.push(route.route_id);
-			}
-		}
-	});
-	return list;
+  routeList.sort((a, b) => a.routeId - b.routeId).forEach(route => {
+    if (limit.indexOf(route.routeId) !== -1) {
+      pidArr.push(route.routeId);
+    } else {
+      if (pidArr.length) {
+        if (pidArr.indexOf(route.pid) !== -1 || pidArr.indexOf(route.routeId) !== -1) {
+          pidArr.push(route.routeId);
+        } else {
+          list.push(route.routeId);
+        }
+      } else {
+        list.push(route.routeId);
+      }
+    }
+  });
+  return list;
 };
 
 
 const userRoleList = [
-	{
-		role_name: "admin",
-		role_list: routeList.map(route => {
-			return route.route_id;
-		})
-	},
-	{
-		role_name: "common",
-		role_list: commonRoleList()
-	},
+  {
+    roleName: "admin",
+    roleList: routeList.map(route => {
+      return route.routeId;
+    })
+  },
+  {
+    roleName: "common",
+    roleList: commonRoleList()
+  },
 ];
 
 
-const userAuthModel = mongoose.model("user-auth", userAuthSchema);
+const userAuthModel = mongoose.model("userAuth", userAuthSchema);
 
 const createRole = async (role) => {
-	const hasRole = await userAuthModel.findOne({role_name: role.role_name});
-	if (!hasRole) userAuthModel.create(role);
+  const hasRole = await userAuthModel.findOne({roleName: role.roleName});
+  if (!hasRole) userAuthModel.create(role);
 };
 
 userRoleList.forEach(role => {
-	createRole(role);
+  createRole(role);
 });
 
 module.exports = userAuthModel;

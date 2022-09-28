@@ -21,6 +21,7 @@
     "pinia": "^2.0.14",
     "qrcodejs2-fixes": "^0.0.2",
     "vue": "^3.2.25",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.1"
   },
   "devDependencies": {

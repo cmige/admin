@@ -21,86 +21,85 @@ const Copy = () => import("@/views/functional/clipboard/index.vue");
 
 
 export const dynamicRoutes: Array<RouteRecordRaw> = [
-    {
-        path: "/",
-        name: "/",
-        component: Layout,
-        redirect: "/home",
+  {
+    path: "/",
+    name: "/",
+    component: Layout,
+    redirect: "/home",
+    children: [
+      {
+        path: "/home",
+        name: "home",
+        component: Home
+      },
+      {
+        path: "/products",
+        name: "productManage",
+        component: ProductManage,
+        redirect: '/products/category',
         children: [
-            {
-                path: "/home",
-                name: "home",
-                component: Home
-            },
-            {
-                path: "/products",
-                name: "productManage",
-                component: ProductManage,
-                redirect: '/products/category',
-                children:[
-                    {
-                        path: '/products/category',
-                        name: "Category",
-                        component: Category
-                    },
-                    {
-                        path: '/products/commodity',
-                        name: "Commodity",
-                        component: Commodity
-                    }
-                ]
-            },
-            {
-                path: "/role",
-                name: "roleManage",
-                component: RoleManage
-            },
-            {
-                path: "/user",
-                name: "userManage",
-                component: UserManage
-            },
-            {
-                path: "/order",
-                name: "orderManage",
-                component: OrderManage
-            },
-            {
-                path: "/personal",
-                name: "Personal",
-                component: Personal
-            },
-            {
-                path: "/fun",
-                name: "Function",
-                component: Function
-            },
-            {
-                path: "/system",
-                name: "System",
-                component: SystemManage
-            },
-            {
-                path: "/charts",
-                name: "Charts",
-                component: Charts
-            },
+          {
+            path: '/products/category',
+            name: "Category",
+            component: Category
+          },
+          {
+            path: '/products/commodity',
+            name: "Commodity",
+            component: Commodity
+          }
         ]
-    },
+      },
+      {
+        path: "/role",
+        name: "roleManage",
+        component: RoleManage
+      },
+      {
+        path: "/user",
+        name: "userManage",
+        component: UserManage
+      },
+      {
+        path: "/order",
+        name: "orderManage",
+        component: OrderManage
+      },
+      {
+        path: "/personal",
+        name: "Personal",
+        component: Personal
+      },
+      {
+        path: "/fun",
+        name: "Function",
+        component: Function
+      },
+      {
+        path: "/system",
+        name: "System",
+        component: SystemManage
+      },
+      {
+        path: "/charts",
+        name: "Charts",
+        component: Charts
+      },
+    ]
+  },
 ];
 
 export const staticRoutes: Array<RouteRecordRaw> = [
-    {
-        path: "/",
-        name: "/",
-        component: Layout
-
-    },
-    {
-        path: "/login",
-        name: "login",
-        component: Login
-    }
+  {
+    path: "/",
+    name: "/",
+    component: Layout
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  }
 
 ];
 
